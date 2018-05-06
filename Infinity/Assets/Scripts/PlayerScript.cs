@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 
+    // declaring the power of the jump
     public float jumpPower = 10.0f;
+
+    // new rigidbody 
     Rigidbody2D myrigidbody;
+
+    // isgrounded is false from the start, bool = false or true
     private bool isGrounded = false;
 
 	// Use this for initialization
@@ -18,10 +23,13 @@ public class PlayerScript : MonoBehaviour {
 	void FixedUpdate () {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            // adding upward force which is multiplied with the jumpPower (10.f), mass of rigidbody and the gravityscale, 
+            //(jumpPower, mass and gravityscale can be edited when you click the player and look in the rigidbody section) 
             myrigidbody.AddForce(Vector3.up * (jumpPower * myrigidbody.mass * myrigidbody.gravityScale * 20.0f));
         }
 	}
 
+    // when the player touches the ground, isGrounded is true
     void OnCollisionEnter2D(Collision2D other)
     {
         
@@ -32,6 +40,7 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
+    // when the player stays on the ground, isGrounded is true
     void OnCollisionStay2D(Collision2D other)
     {
 
@@ -42,6 +51,7 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
+    // when the player jumps, isGrounded is false and he can't jump until he isGrounded
     void OnCollisionExit2D(Collision2D other)
     {
 
