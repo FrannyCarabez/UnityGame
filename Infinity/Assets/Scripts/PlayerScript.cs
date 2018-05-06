@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour {
 
     public float jumpPower = 10.0f;
     Rigidbody2D myrigidbody;
-    public bool isGrounded = false;
+    private bool isGrounded = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             myrigidbody.AddForce(Vector3.up * (jumpPower * myrigidbody.mass * myrigidbody.gravityScale * 20.0f));
         }
